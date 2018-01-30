@@ -7,6 +7,18 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>rms-spring Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  	<developers>
+		<developer>
+			<id>bery</id>
+			<name>Bery Orindi</name>
+			<email>bery.orindi@gmail.com</email>
+		</developer>
+	</developers>
+	<properties>
+		<jdk.version>1.8</jdk.version>
+		<spring.version>4.2.3.RELEASE</spring.version>
+		<jstl.version>1.2</jstl.version>
+	</properties>
   <dependencies>
 	<dependency>
 		<groupId>junit</groupId>
@@ -14,38 +26,113 @@
 		<version>3.8.1</version>
 		<scope>test</scope>
 	</dependency>
+	
+	<!-- Spring 4 dependencies -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-context</artifactId>
-		<version>4.1.8.RELEASE</version>
+		<version>${spring.version}</version>
 	</dependency>
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-webmvc</artifactId>
-		<version>4.2.2.RELEASE</version>
+		<version>${spring.version}</version>
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<!-- Spring Security -->
 	<dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-web</artifactId>
-        <version>4.0.1.RELEASE</version>
+        <version>${spring.version}</version>
     </dependency>
     <dependency>
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-config</artifactId>
-		<version>4.0.1.RELEASE</version>
+		<version>${spring.version}</version>
 	</dependency>
+	
+	<!-- Spring Security JSP Taglib -->
+	<dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-taglibs</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    
+    <!-- connect to mysql -->
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.36</version>
 	</dependency>
+	
+	<!-- servlet -->
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>jstl</artifactId>
-		<version>1.2</version>
+		<version>${jstl.version}</version>
 	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.0</version>
+        <scope>provided</scope>
+    </dependency>
 </dependencies>
-  <build>
-    <finalName>rms-spring</finalName>
-  </build>
+  	<build>
+		<finalName>rms-spring</finalName>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<path>/</path>
+						<contextReloadable>true</contextReloadable>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.9</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>false</downloadJavadocs>
+						<wtpversion>2.0</wtpversion>
+					</configuration>
+				</plugin>
+			</plugins>
+	</build>
 </project>

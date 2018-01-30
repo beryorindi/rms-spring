@@ -1,14 +1,33 @@
 package com.rentcar.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="cars")
 public class Car {
-	String brand;
-	String type;
-	String model;
-	String transmition;
-	int seat;
-	int year;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(name="brand")
+	private String brand;
+	@Column(name="model")
+	private String model;
+	@Column(name="type")
+	private String type;
+	@Column(name="transmition")
+	private String transmition;
+	@Column(name="seat")
+	private int seat;
+	@Column(name="year")
+	private int year;
 
+	public Car(){}
+	
 	public Car(String transmition, String type, String brand, int year, String model, int seat) {
 		this.transmition = transmition;
 		this.type = type;
@@ -17,6 +36,8 @@ public class Car {
 		this.model = model;
 		this.seat = seat;
 	}
+	
+	
 	public String getTransmition() {
 		return transmition;
 	}
@@ -52,6 +73,10 @@ public class Car {
 	}
 	public void setSeat(int seat) {
 		this.seat = seat;
+	}
+
+	public Long getId() {
+		return id;
 	}
 	
 }
